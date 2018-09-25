@@ -88,6 +88,8 @@
             document.getElementById('mainMenu').className='menu hidden';
             gameId = document.getElementById("gameid").value;
 
+            document.getElementById("gameId").innerHTML = "Game ID: " + gameId;
+
             $.post("api/game/join/" + gameId + "/" + playerId, function (data) {
                 boards = document.getElementById("board").children;
                 for (i = 0; i < data.GameBoard.length; i++) {
@@ -105,6 +107,8 @@
         function createNewGame() {
             $.post("api/game/create/" + playerId, function (data) {
                 gameId = data.GameId;
+
+                document.getElementById("gameId").innerHTML = "Game ID: " + gameId;
 
                 document.getElementById('mainMenu').className='menu hidden';
            });
@@ -163,6 +167,7 @@
     </script>
 </head>
 <body>
+    <div id="gameId">Game ID: None</div>
     <div id="board" class="board">
         <div class="block bottom" onclick="playTurn(0)"></div>
         <div class="block left right bottom" onclick="playTurn(1)"></div>
